@@ -44,7 +44,7 @@ Player.Idled:Connect(preventAFK)
 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xccxk/LIBPHEOX/refs/heads/main/BYMYERS", true))()
 
-local window = library:AddWindow("Snow paid2", {
+local window = library:AddWindow("Snow paid 1.2.0 | Farming", {
     main_color = Color3.fromRGB(0, 0, 0),
     min_size = Vector2.new(650, 870),
     can_resize = true,
@@ -4532,3 +4532,13 @@ Credits:AddLabel("paid version")
 Credits:AddLabel("Script Made by username:")
 Credits:AddLabel("MyersDev and snow😼")
 Credits:AddLabel("I hope you like the script, for bugs or suggestions on my discord server")
+
+-- Botão para o servidor do Discord
+Credits:AddButton("Join my Discord server", function()
+    setclipboard("https://discord.gg/Kw5avTFZ8A") -- copia o link para a área de transferência
+    game:GetService("StarterGui"):SetCore("SendNotification", {
+        Title = "Discord";
+        Text = "Link copiado! Cole no navegador para entrar no servidor.";
+        Duration = 5;
+    })
+end)
