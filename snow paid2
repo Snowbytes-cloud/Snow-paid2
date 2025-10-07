@@ -42,7 +42,7 @@ Player.Idled:Connect(preventAFK)
 
 
 
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Snowbytes-cloud/suez/refs/heads/main/Suez"))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xccxk/LIBPHEOX/refs/heads/main/BYMYERS", true))()
 
 local window = library:AddWindow("Snow paid2", {
     main_color = Color3.fromRGB(0, 0, 0),
