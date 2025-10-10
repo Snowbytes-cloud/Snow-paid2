@@ -661,7 +661,7 @@ fastStrengthFolder:AddSwitch("Fast Rebirth", function(state)
                 equipPetByName(FarmPet)
 
                 while LocalPlayer.leaderstats.Strength.Value < requiredStrength and getgenv().AutoFarming do
-                    for _ = 1, 27 do
+                    for _ = 1, 35 do
                         LocalPlayer.muscleEvent:FireServer("rep")
                     end
                     task.wait()
