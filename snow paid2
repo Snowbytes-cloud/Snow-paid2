@@ -1,3 +1,22 @@
+--[[
+🧊 SNOW PAID 1.2.0
+Proprietário: Snow | Ano: 2025
+
+PT: Todos os direitos reservados. Proibido copiar, modificar,
+redistribuir ou vender este script sem autorização.
+Uso não autorizado pode gerar ações legais.
+
+EN: All rights reserved. Copying, modifying, redistributing
+or selling this script without permission is prohibited.
+Unauthorized use may result in legal actions.
+
+ES: Todos los derechos reservados. Prohibido copiar, modificar,
+redistribuir o vender este script sin autorización.
+Uso no autorizado puede derivar en acciones legales.
+]]
+
+
+
 local Players = game:GetService("Players")
 local StarterGui = game:GetService("StarterGui")
 local VirtualUser = game:GetService("VirtualUser")
