@@ -725,38 +725,49 @@ rebirthFolder:AddTextBox("Target number of Rebirths", function(value)
 end, {clear = false})
 
 -- Toggle para llegar al rebirth objetivo
-local targetRebirthToggle = rebirthFolder:AddSwitch("Start", function(enabled)
+local targetRebirthToggle
+targetRebirthToggle = rebirthFolder:AddSwitch("Start", function(enabled)
     farmingTarget = enabled
-    if enabled then
-        task.spawn(function()
-            while farmingTarget do
-                local currentRebirths = leaderstats.Rebirths.Value
-                local requiredStrength = 10000 + 5000 * currentRebirths
 
-                -- Si ya alcanzó el objetivo, apagar toggle
-                if targetRebirthAmount and currentRebirths >= targetRebirthAmount then
-                    targetRebirthToggle:Set(false)
-                    farmingTarget = false
-                    break
-                end
-
-                -- Hacer rebirth si ya tienes fuerza suficiente
-                if leaderstats.Strength.Value >= requiredStrength then
-                    replicatedStorage.rEvents.rebirthRemote:InvokeServer("rebirthRequest")
-                    task.wait(0.7)
-                else
-                    -- Farmear fuerza
-                    for i = 1, repSpeed do
-                        MuscleEvent:FireServer("rep")
-                    end
-                end
-
-                task.wait(0.1)
-            end
-        end)
+    if not enabled then
+        print("⛔ Farm de rebirth detenido manualmente.")
+        return
     end
+
+    task.spawn(function()
+        print("⏳ Farm de rebirth iniciado...")
+        while farmingTarget do
+            local currentRebirths = leaderstats.Rebirths.Value
+            local requiredStrength = 10000 + 5000 * currentRebirths
+
+            -- Si ya alcanzó el objetivo, apagar toggle
+            if targetRebirthAmount and currentRebirths >= targetRebirthAmount then
+                print("✅ Objetivo de rebirths alcanzado: " .. currentRebirths)
+                farmingTarget = false
+                task.defer(function()
+                    targetRebirthToggle:Set(false)
+                end)
+                break
+            end
+
+            -- Hacer rebirth si ya tienes fuerza suficiente
+            if leaderstats.Strength.Value >= requiredStrength then
+                replicatedStorage.rEvents.rebirthRemote:InvokeServer("rebirthRequest")
+                task.wait(0.7)
+            else
+                -- Farmear fuerza
+                for i = 1, repSpeed do
+                    MuscleEvent:FireServer("rep")
+                end
+            end
+
+            task.wait(0.15)
+        end
+        print("🚫 Farm de rebirth detenido.")
+    end)
 end)
 
+-- Auto teleport al rey
 rebirthFolder:AddSwitch("Auto Teleport to the king", function(enabled)
     if enabled then
         _G.AutoTeleportKing = true
@@ -780,6 +791,7 @@ rebirthFolder:AddSwitch("Auto Teleport to the king", function(enabled)
     end
 end)
 
+-- Auto size 2
 rebirthFolder:AddSwitch("Auto size 2", function(enabled)
     if enabled then
         _G.AutoSize2 = true
@@ -799,6 +811,7 @@ rebirthFolder:AddSwitch("Auto size 2", function(enabled)
         _G.AutoSize2 = false
     end
 end)
+
 
 
 
